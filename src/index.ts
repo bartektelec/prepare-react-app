@@ -1,5 +1,5 @@
 import inquirer from 'inquirer';
-import createProject from './create';
+import projectWizard from './wizard';
 
 const pathName = process.argv[2];
 
@@ -7,7 +7,7 @@ const pathName = process.argv[2];
 if (!pathName) {
   init();
 } else {
-  createProject(pathName);
+  projectWizard(pathName);
 }
 
 function init() {
@@ -17,14 +17,11 @@ function init() {
         type: 'input',
         name: 'project_name',
         message: 'What do you want to call the project?',
+        validate: input => Boolean(input.length),
       },
     ])
     .then(answers => {
-      if (!answers.project_name.length) {
-        console.log('Cannot create a project without a name');
-        return init();
-      }
-      createProject(answers.project_name);
+      projectWizard(answers.project_name);
     })
     .catch(error => {
       if (error.isTtyError) {
