@@ -1,21 +1,21 @@
 <div style="text-align: center">
 
-# ⚛️react-new
+# ⚛️prepare-react-app
 
 An alternative CLI for creating new React projects, with minimalistic approach and many customization possibilities.
 
 ## Usage
 
-Install react-new globally
+Install prepare-react-app globally
 
 ```bash
-npm install -g react-new
+npm install -g prepare-react-app
 ```
 
-Use react-new to create a new project
+Use react-app command to create a new project
 
 ```bash
-react-new my-app
+react-app my-app
 ```
 
 Follow the instructions to set it up as you like
