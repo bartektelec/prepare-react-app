@@ -1,16 +1,17 @@
 {
-  "name": "react-init",
+  "name": "react-new",
   "version": "0.0.1",
   "description": "alternative cli for creating new react projects",
   "main": "index.js",
   "scripts": {
+    "prepare": "npm run build",
     "build": "tsc",
     "watch": "tsc --watch",
     "test": "jest"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bartektelec/react-init.git"
+    "url": "git+https://github.com/bartektelec/react-new.git"
   },
   "keywords": [
     "react",
@@ -20,9 +21,9 @@
   "author": "bartektelec",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/bartektelec/react-init/issues"
+    "url": "https://github.com/bartektelec/react-new/issues"
   },
-  "homepage": "https://github.com/bartektelec/react-init#readme",
+  "homepage": "https://github.com/bartektelec/react-new#readme",
   "dependencies": {
     "commander": "^7.0.0",
     "inquirer": "^7.3.3",

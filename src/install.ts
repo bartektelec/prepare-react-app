@@ -31,7 +31,7 @@ export default function install(name: string, deps: string[]) {
     private: true,
     scripts: {
       dev: 'parcel public/index.html',
-      build: 'parcel build public/index.html ',
+      build: 'parcel build public/index.html --public-url .',
     },
     devDependencies: {
       react: '^17.0.1',
@@ -48,40 +48,40 @@ export default function install(name: string, deps: string[]) {
 
   const fileExtension = deps.includes('TypeScript') ? 'tsx' : 'js';
 
-  fs.mkdirSync(path.join(__dirname, name));
-  fs.mkdirSync(path.join(__dirname, name, 'public'));
-  fs.mkdirSync(path.join(__dirname, name, 'src'));
+  fs.mkdirSync(path.join('.', name));
+  fs.mkdirSync(path.join('.', name, 'public'));
+  fs.mkdirSync(path.join('.', name, 'src'));
 
   fs.writeFile(
-    path.join(__dirname, name, 'package.json'),
+    path.join('.', name, 'package.json'),
     JSON.stringify(pkg),
     err => {
       if (err) console.error(err);
     }
   );
   fs.writeFile(
-    path.join(__dirname, name, 'src', `index.${fileExtension}`),
+    path.join('.', name, 'src', `index.${fileExtension}`),
     getInitialScript(fileExtension),
     err => {
       if (err) console.error(err);
     }
   );
   fs.writeFile(
-    path.join(__dirname, name, 'src', `App.${fileExtension}`),
+    path.join('.', name, 'src', `App.${fileExtension}`),
     getAppScript(name),
     err => {
       if (err) console.error(err);
     }
   );
   fs.writeFile(
-    path.join(__dirname, name, 'src', `style.css`),
+    path.join('.', name, 'src', `style.css`),
     getStyleTemplate(),
     err => {
       if (err) console.error(err);
     }
   );
   fs.writeFile(
-    path.join(__dirname, name, 'public', 'index.html'),
+    path.join('.', name, 'public', 'index.html'),
     getHTMLtemplate(name),
     err => {
       if (err) console.error(err);
