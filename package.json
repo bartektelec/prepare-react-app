@@ -1,0 +1,24 @@
+{
+  "name": "react-init",
+  "version": "0.0.1",
+  "description": "alternative cli for creating new react projects",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bartektelec/react-init.git"
+  },
+  "keywords": [
+    "react",
+    "cli",
+    "init"
+  ],
+  "author": "bartektelec",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bartektelec/react-init/issues"
+  },
+  "homepage": "https://github.com/bartektelec/react-init#readme"
+}
