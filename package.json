@@ -1,8 +1,11 @@
 {
   "name": "prepare-react-app",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "alternative cli for creating new react projects",
-  "main": "index.js",
+  "main": "./dist/index.js",
+  "bin": {
+    "react-app": "./dist/index.js"
+  },
   "scripts": {
     "prepare": "npm run build",
     "build": "tsc",
