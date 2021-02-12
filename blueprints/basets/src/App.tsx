@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import logo from "./logo.svg";
+import Header from "./components/header/Header";
 import "./style.css";
+import "./app.scss";
 
-interface AppProps {}
-
-const App: React.FC<AppProps> = () => {
+const App: React.FC<any> = () => {
   // Create the count state.
   const [count, setCount] = useState(0);
   // Create the counter (+1 every second).
@@ -16,6 +16,7 @@ const App: React.FC<AppProps> = () => {
   return (
     <div className="App">
       <header>
+        <Header />
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.tsx</code> and save to reload.

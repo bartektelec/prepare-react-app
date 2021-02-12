@@ -1,3 +1,4 @@
+/* eslint-disable */
 const babelJest = require("babel-jest");
 
 const hasJsxRuntime = (() => {

@@ -5,6 +5,7 @@ exports.default = {
   singleQuote: true,
   semi: true,
   tabWidth: 2,
+  printWidth: 120,
   useTabs: true,
   arrowParens: "avoid",
 };
