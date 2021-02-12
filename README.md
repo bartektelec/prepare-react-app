@@ -1,6 +1,6 @@
 <div style="text-align: center">
 
-# ⚛️prepare-react-app
+# 🥏prepare-react-app
 
 An alternative CLI for creating new React projects, with minimalistic approach and many customization possibilities.
 

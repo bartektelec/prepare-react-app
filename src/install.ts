@@ -1,11 +1,14 @@
+// NOTE
+// This function is supposed to get created project directory
+// It should then let wizard ask questions and handle further installation
+// by passing features list to blueprint and deps handlers
+
+// SECTION
+// Input: Project directory
+// Return: void
+
 import fs from 'fs';
 import path from 'path';
-import getHTMLtemplate from './utils/getHTMLtemplate';
-import {
-  getInitialScript,
-  getAppScript,
-  getStyleTemplate,
-} from './utils/getScriptTemplate';
 
 const presets: Record<string, { [key: string]: string }> = {
   parcel: {
@@ -55,34 +58,6 @@ export default function install(name: string, deps: string[]) {
   fs.writeFile(
     path.join('.', name, 'package.json'),
     JSON.stringify(pkg),
-    err => {
-      if (err) console.error(err);
-    }
-  );
-  fs.writeFile(
-    path.join('.', name, 'src', `index.${fileExtension}`),
-    getInitialScript(fileExtension),
-    err => {
-      if (err) console.error(err);
-    }
-  );
-  fs.writeFile(
-    path.join('.', name, 'src', `App.${fileExtension}`),
-    getAppScript(name),
-    err => {
-      if (err) console.error(err);
-    }
-  );
-  fs.writeFile(
-    path.join('.', name, 'src', `style.css`),
-    getStyleTemplate(),
-    err => {
-      if (err) console.error(err);
-    }
-  );
-  fs.writeFile(
-    path.join('.', name, 'public', 'index.html'),
-    getHTMLtemplate(name),
     err => {
       if (err) console.error(err);
     }

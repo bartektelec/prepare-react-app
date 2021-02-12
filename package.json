@@ -10,7 +10,8 @@
     "prepare": "npm run build",
     "build": "tsc",
     "watch": "tsc --watch",
-    "test": "jest"
+    "test": "jest",
+    "test:watch": "jest --watchAll"
   },
   "repository": {
     "type": "git",
@@ -19,7 +20,8 @@
   "keywords": [
     "react",
     "cli",
-    "init"
+    "init",
+    "prepare"
   ],
   "author": "bartektelec",
   "license": "MIT",

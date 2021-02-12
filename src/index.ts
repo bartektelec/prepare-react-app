@@ -2,9 +2,10 @@
 
 import inquirer from 'inquirer';
 import projectWizard from './wizard';
+import { PATH_BLUEPRINTS } from './consts/paths';
 
 const pathName = process.argv[2];
-
+console.log(PATH_BLUEPRINTS);
 // check if directory exists and is empty if not warn user
 if (!pathName) {
   init();
