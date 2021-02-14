@@ -1,6 +1,6 @@
 # Important
 
-- [ ] Create a working blueprint for a TS project with ESLint, prettier, jest, testing-library, redux, router
+- [ ] Create a working blueprint for a TS project with jest, testing-library, redux, router
 - [ ] Split the blueprint and create two base blueprints: JavaScript and TypeScript
 
 ## Stage 1 - Blueprints
@@ -20,3 +20,11 @@
 - [ ] Create a deps file for ESLint + Prettier support
 - [ ] Create a deps file for Jest support
 - [ ] Create a deps file for Cypress support
+
+## Planned further development
+
+- [ ] Add support for ESLint with Prettier and Airbnb config + Typescript
+- [ ] Consider adding PropTypes feature to JS base
+- [ ] Consider adding additional CSS Frameworks
+- [ ] Consider adding Storybook feature
+- [ ] Consider preferred "Streamed imports"
