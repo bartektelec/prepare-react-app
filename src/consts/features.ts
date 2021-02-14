@@ -1,13 +1,14 @@
 // NOTE
 // All feature lists / enums are to be stored here
 export enum Feature {
-  'PWA' = 'PWA Support',
-  'CDN' = 'Streamed imports',
-  'ROUTER' = 'Router',
-  'REDUX' = 'Redux',
-  'LINT' = 'Linter / Formatter',
-  'UNIT_TEST' = 'Unit testing',
-  'E2E_TEST' = 'E2E testing',
+  TS = <any>'TypeScript',
+  PWA = <any>'PWA Support',
+  CDN = <any>'Streamed imports',
+  ROUTER = <any>'Router',
+  REDUX = <any>'Redux',
+  LINT = <any>'Linter / Formatter',
+  UNIT_TEST = <any>'Unit testing',
+  E2E_TEST = <any>'E2E testing',
 }
 
 export enum StyleFormat {

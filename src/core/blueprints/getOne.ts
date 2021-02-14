@@ -13,8 +13,8 @@ import {PATH_BLUEPRINTS} from '@src/consts/paths';
 export default async function(dirName: string) {
     try {
         const dirPath = path.join(PATH_BLUEPRINTS, dirName);
-        const files = fs.createReadStream(dirPath, {encoding: 'utf-8'});
-
+        if(!fs.existsSync(dirPath)) throw new Error(`Directory blueprint ${dirName} doesn't exist`);
+        const files = await fs.readdirSync(dirPath).map(x => dirName + '/' + x);
         return files;
 
     } catch(error) {
