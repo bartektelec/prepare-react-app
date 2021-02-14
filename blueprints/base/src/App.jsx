@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import logo from "./logo.svg";
-import Header from "./components/header/Header";
 import "./style.css";
 
 const App = () => {
@@ -15,7 +14,6 @@ const App = () => {
   return (
     <div className="App">
       <header>
-        <Header />
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.tsx</code> and save to reload.

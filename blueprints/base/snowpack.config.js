@@ -8,7 +8,6 @@ module.exports = {
     src: { url: '/dist' },
   },
   plugins: [
-    '@snowpack/plugin-babel',
     '@snowpack/plugin-sass',
     '@snowpack/plugin-react-refresh',
     '@snowpack/plugin-dotenv',
