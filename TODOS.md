@@ -1,7 +1,7 @@
 # Important
 
 - [ ] Create a working blueprint for a TS project with jest, testing-library, redux, router
-- [ ] Split the blueprint and create two base blueprints: JavaScript and TypeScript
+- [X] Split the blueprint and create two base blueprints: JavaScript and TypeScript
 
 ## Stage 1 - Blueprints
 

@@ -4,3 +4,5 @@
 // SECTION
 // Input: Directory name (optionally _ts if needed)
 // Return: All blueprint files for that directory
+
+export default function() {}
