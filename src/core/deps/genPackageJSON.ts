@@ -40,7 +40,7 @@ const JSON_TEMPLATE: PackageJSON = {
   }
 
 
-  export default function(name: string, deps: DepsFile) {
+  export default function(name: string, deps: DepsFile):PackageJSON {
       const tmp = {...JSON_TEMPLATE};
       tmp.name = name;
 
