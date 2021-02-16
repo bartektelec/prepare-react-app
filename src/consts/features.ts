@@ -1,15 +1,26 @@
 // NOTE
 // All feature lists / enums are to be stored here
 export enum Feature {
-  TS = <any>'TypeScript',
-  PWA = <any>'PWA Support',
-  CDN = <any>'Streamed imports',
-  ROUTER = <any>'Router',
-  REDUX = <any>'Redux',
-  LINT = <any>'Linter / Formatter',
-  UNIT_TEST = <any>'Unit testing',
-  E2E_TEST = <any>'E2E testing',
+  'TypeScript',
+  'PWA Support',
+  'Streamed imports',
+  'Router',
+  'Redux',
+  'Linter / Formatter',
+  'Unit testing',
+  'E2E testing',
 }
+
+export const FEATURE_TO_DIR: { [key: string]: string } = {
+  TypeScript: 'ts',
+  'PWA Support': 'pwa',
+  'Streamed imports': 'cdn',
+  Router: 'router',
+  Redux: 'redux',
+  'Linter / Formatter': 'lint',
+  'Unit testing': 'unit_test',
+  'E2E testing': 'e2e_test',
+};
 
 export enum StyleFormat {
   'BASE' = 'CSS / SCSS',

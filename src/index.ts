@@ -13,7 +13,6 @@ if (!pathName) {
   projectWizard(pathName);
 }
 
-
 function init() {
   inquirer
     .prompt([

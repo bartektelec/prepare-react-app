@@ -1,4 +1,4 @@
 export default {
-    deps: [],
-    devDeps: [{pkg: "test", "^123.1.2"}]
-}
+  deps: [],
+  devDeps: [{ pkg: 'test', ver: '^123.1.2' }],
+};

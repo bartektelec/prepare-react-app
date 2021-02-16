@@ -7,20 +7,29 @@ describe('resolveBlueprints', () => {
     expect(dir).toContain('base');
   });
   it('should add a base ts folder', () => {
-    const dir = resolveBlueprints([Feature.TS]);
+    const dir = resolveBlueprints([Feature.TypeScript]);
     expect(dir).toContain('base_ts');
   });
   it('should find directory for one blueprint', () => {
-    expect(resolveBlueprints([Feature.PWA])).toContain('pwa');
-    expect(resolveBlueprints([Feature.PWA])).not.toContain('cdn');
+    expect(resolveBlueprints([Feature['PWA Support']])).toContain('pwa');
+    expect(resolveBlueprints([Feature['Streamed imports']])).not.toContain(
+      'cdn'
+    );
   });
   it('should find directory for multiple blueprint', () => {
-    const dirs = resolveBlueprints([Feature.PWA, Feature.CDN]);
+    const dirs = resolveBlueprints([
+      Feature['PWA Support'],
+      Feature['Streamed imports'],
+    ]);
     expect(dirs).toContain('cdn');
     expect(dirs).toContain('pwa');
   });
   it('should find directories for typescript variants', () => {
-    const dirs = resolveBlueprints([Feature.PWA, Feature.CDN, Feature.TS]);
+    const dirs = resolveBlueprints([
+      Feature['PWA Support'],
+      Feature['Streamed imports'],
+      Feature['TypeScript'],
+    ]);
     expect(dirs).toContain('pwa');
     expect(dirs).toContain('cdn_ts');
     expect(dirs).not.toContain('cdn');
@@ -29,7 +38,7 @@ describe('resolveBlueprints', () => {
   });
 
   it('should not add directories that have not been added yet', () => {
-    const dir = resolveBlueprints([Feature.LINT]);
+    const dir = resolveBlueprints([Feature['Linter / Formatter']]);
     expect(dir).toContain('base');
     expect(dir).not.toContain('lint');
     expect(dir).not.toContain('lint_ts');
