@@ -34,7 +34,4 @@ describe('resolveBlueprints', () => {
     expect(dir).not.toContain('lint');
     expect(dir).not.toContain('lint_ts');
   });
-  it('should fail', () => {
-    expect(false).toBeTruthy();
-  })
 });
