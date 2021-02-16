@@ -6,3 +6,23 @@
 // SECTION
 // Input: project name
 // Return: project directory
+
+import fs from 'fs';
+import path from 'path';
+import util from 'util';
+
+const mkdirAsync = util.promisify(fs.mkdir);
+const readdirAsync = util.promisify(fs.readdir);
+
+export default async function (directory: string) {
+  const pathname = path.join('.', directory);
+  const doesDirectoryExist = fs.existsSync(pathname);
+  if (!doesDirectoryExist) {
+    await mkdirAsync(pathname);
+  }
+
+  const dirContent = await readdirAsync(pathname);
+  if (dirContent.length)
+    throw new Error(`Directory must be empty to create a project`);
+  return pathname;
+}
