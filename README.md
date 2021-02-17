@@ -9,6 +9,10 @@ An alternative CLI for creating new React projects, with minimalistic approach a
 </div>
 <hr />
 
+<div align="center">
+<img src="./pic1.jpg" alt="program screenshot">
+</div>
+
 ## Why?
 
 I'm tired of using Create React App which ships with a lot of additional dependencies, but doesn't really add any of the most used tooling for React apps. I've wished that React had it's own CLI that does the job as good as i.e. Vue CLI, so you don't need to spend additional hours to set up a linter for your new project. That's where prepare-react-app comes in handy, it let's you initiate a new React project where you can choose yourself which parts you want to include in your build.
