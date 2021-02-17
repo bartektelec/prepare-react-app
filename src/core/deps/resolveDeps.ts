@@ -24,13 +24,13 @@ export default async function (features: (keyof typeof Feature)[]) {
   }
 
   const baseDeps = requiresTS ? 'base_ts' : 'base';
-
   const data = await readFileAsync(
     path.join(PATH_DEPS, `${baseDeps}.json`),
     'utf-8'
   );
   const dataObj = JSON.parse(data);
-  dependencies = { ...dependencies, ...dataObj };
+  dependencies.deps = [...dependencies.deps, ...dataObj.deps];
+  dependencies.devDeps = [...dependencies.devDeps, ...dataObj.devDeps];
 
   for (let feature of features) {
     if (feature === 'TypeScript') continue;
@@ -48,7 +48,8 @@ export default async function (features: (keyof typeof Feature)[]) {
         'utf-8'
       );
       const dataObj = JSON.parse(data);
-      dependencies = { ...dependencies, ...dataObj };
+      dependencies.deps = [...dependencies.deps, ...dataObj.deps];
+      dependencies.devDeps = [...dependencies.devDeps, ...dataObj.devDeps];
       continue;
     }
     if (!doesJSexist) continue;
@@ -59,7 +60,8 @@ export default async function (features: (keyof typeof Feature)[]) {
     );
     // if ts is added but no directory with _ts exists or ts is disabled
     const dataObj = JSON.parse(data);
-    dependencies = { ...dependencies, ...dataObj };
+    dependencies.deps = [...dependencies.deps, ...dataObj.deps];
+    dependencies.devDeps = [...dependencies.devDeps, ...dataObj.devDeps];
   }
 
   return dependencies;

@@ -10,13 +10,13 @@ describe('resolveDeps', () => {
 
   it('should find dependencies for unit testing', async () => {
     const data = await resolveDeps(['Unit testing']);
-    await expect(data.deps).toHaveLength(1);
-    await expect(data.devDeps).toHaveLength(5);
+    await expect(data.deps).toHaveLength(3);
+    await expect(data.devDeps).toHaveLength(10);
   });
 
   it('should find dependencies for unit testing when TS project', async () => {
     const data = await resolveDeps(['Unit testing', 'TypeScript']);
-    await expect(data.deps).toHaveLength(1);
-    await expect(data.devDeps).toHaveLength(5);
+    await expect(data.deps).toHaveLength(3);
+    await expect(data.devDeps).toHaveLength(15);
   });
 });
