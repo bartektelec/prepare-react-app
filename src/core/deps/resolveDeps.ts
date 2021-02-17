@@ -41,7 +41,6 @@ export default async function (features: (keyof typeof Feature)[]) {
     const doesJSexist = fs.existsSync(pathname_js);
 
     if (requiresTS && doesTSexist) {
-      console.log('required ts and getting ts');
       // if ts is added to project try to add _ts directory
       const data = await readFileAsync(
         path.join(PATH_DEPS, `${dirName}_ts.json`),
