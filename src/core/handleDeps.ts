@@ -14,7 +14,6 @@ export default async function (
   features: (keyof typeof Feature)[]
 ) {
   const deps = await resolveDeps(features);
-  console.log('Adding dependencies to package.json...');
   const pkgFile = await genPkgJSON(projectName, deps);
   return pkgFile;
 }

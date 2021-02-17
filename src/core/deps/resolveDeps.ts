@@ -18,11 +18,19 @@ const readFileAsync = util.promisify(fs.readFile);
 
 export default async function (features: (keyof typeof Feature)[]) {
   let requiresTS = false;
+  let dependencies: { deps: any[]; devDeps: any[] } = { deps: [], devDeps: [] };
   if (features.some(x => x === 'TypeScript')) {
     requiresTS = true;
   }
 
-  let dependencies: { deps: any[]; devDeps: any[] } = { deps: [], devDeps: [] };
+  const baseDeps = requiresTS ? 'base_ts' : 'base';
+  const data = await readFileAsync(
+    path.join(PATH_DEPS, `${baseDeps}.json`),
+    'utf-8'
+  );
+  const dataObj = JSON.parse(data);
+  dependencies.deps = [...dependencies.deps, ...dataObj.deps];
+  dependencies.devDeps = [...dependencies.devDeps, ...dataObj.devDeps];
 
   for (let feature of features) {
     if (feature === 'TypeScript') continue;
@@ -33,14 +41,14 @@ export default async function (features: (keyof typeof Feature)[]) {
     const doesJSexist = fs.existsSync(pathname_js);
 
     if (requiresTS && doesTSexist) {
-      console.log('required ts and getting ts');
       // if ts is added to project try to add _ts directory
       const data = await readFileAsync(
         path.join(PATH_DEPS, `${dirName}_ts.json`),
         'utf-8'
       );
       const dataObj = JSON.parse(data);
-      dependencies = { ...dependencies, ...dataObj };
+      dependencies.deps = [...dependencies.deps, ...dataObj.deps];
+      dependencies.devDeps = [...dependencies.devDeps, ...dataObj.devDeps];
       continue;
     }
     if (!doesJSexist) continue;
@@ -51,7 +59,8 @@ export default async function (features: (keyof typeof Feature)[]) {
     );
     // if ts is added but no directory with _ts exists or ts is disabled
     const dataObj = JSON.parse(data);
-    dependencies = { ...dependencies, ...dataObj };
+    dependencies.deps = [...dependencies.deps, ...dataObj.deps];
+    dependencies.devDeps = [...dependencies.devDeps, ...dataObj.devDeps];
   }
 
   return dependencies;
