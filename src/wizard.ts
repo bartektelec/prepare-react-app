@@ -21,7 +21,7 @@ export default function projectWizard(name: string) {
         choices: [...Object.values(Feature)],
       },
     ])
-    .then((answers: { features: Feature[] }) => {
+    .then((answers: { features: (keyof typeof Feature)[] }) => {
       install(name, answers.features);
     })
     .catch(error => {

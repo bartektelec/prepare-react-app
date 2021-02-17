@@ -8,54 +8,45 @@
 // Input: Dependencies lists, project name
 // Return: package.json file
 
-import {Feature} from '../../consts/features';
-import {DepsFile} from '../../types/index';
+import { Feature } from '../../consts/features';
+import { DepsFile } from '../../types/index';
 
-type JSONDependencyList = Record<string, string> 
+type JSONDependencyList = Record<string, string>;
 interface PackageJSON {
-  name: string,
-  version: string,
-  private: boolean,
-  scripts: Record<string, string>
-  devDependencies: JSONDependencyList,
-  dependencies: JSONDependencyList,
+  name: string;
+  version: string;
+  private: boolean;
+  scripts: Record<string, string>;
+  devDependencies: JSONDependencyList;
+  dependencies: JSONDependencyList;
 }
 
 const JSON_TEMPLATE: PackageJSON = {
-    "name": "",
-    "version": "0.1.0",
-    "private": true,
-    "scripts": {
-      "dev": "snowpack dev",
-      "build": "snowpack build",
-      "lint": "eslint ./ --quiet --ext .js,.jsx,.ts,.tsx",
-      "lint:fix": "eslint ./ --quiet --fix",
-      "test": "jest",
-      "test:watch": "jest --watchAll"
-    },
-    "devDependencies": {
-    },
-    "dependencies": {
-    }
+  name: '',
+  version: '1.0.0',
+  private: true,
+  scripts: {
+    dev: 'snowpack dev',
+    build: 'snowpack build',
+    lint: 'eslint ./ --quiet --ext .js,.jsx,.ts,.tsx',
+    'lint:fix': 'eslint ./ --quiet --fix',
+    test: 'jest',
+    'test:watch': 'jest --watchAll',
+  },
+  devDependencies: {},
+  dependencies: {},
+};
+
+export default function (name: string, deps: DepsFile): PackageJSON {
+  const tmp: PackageJSON = JSON.parse(JSON.stringify(JSON_TEMPLATE));
+  tmp.name = name;
+
+  for (let d of deps.deps) {
+    tmp.dependencies[d.pkg] = d.ver;
+  }
+  for (let d of deps.devDeps) {
+    tmp.devDependencies[d.pkg] = d.ver;
   }
 
-
-  export default function(name: string, deps: DepsFile):PackageJSON {
-      const tmp = {...JSON_TEMPLATE};
-      tmp.name = name;
-
-      for(let d of deps.deps) {
-        const tdp = {
-          [d.pkg]: d.ver
-        }
-        tmp.dependencies = {...tmp.dependencies, ...tdp}
-      }
-      for(let d of deps.devDeps) {
-        const tdp = {
-          [d.pkg]: d.ver
-        }
-        tmp.devDependencies = {...tmp.devDependencies, ...tdp}
-      }
-
-      return tmp;
-  }
+  return tmp;
+}

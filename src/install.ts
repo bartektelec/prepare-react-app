@@ -16,14 +16,19 @@ import setupDir from './core/setupDir';
 import resolveBlueprints from './core/blueprints/resolveBlueprints';
 import handleDeps from './core/handleDeps';
 
-export default async function install(name: string, deps: Feature[]) {
+export default async function install(
+  name: string,
+  features: (keyof typeof Feature)[]
+) {
   try {
     console.log('Preparing directory for install');
     const dirname = await setupDir(name);
+    console.log(dirname);
     console.log('Fetching needed blueprints...');
-    const blueprints = await resolveBlueprints(deps);
+    const blueprints = await resolveBlueprints(features);
+    console.log(blueprints);
     console.log('Generating a package.json file...');
-    const pkgJSONfile = await handleDeps(name, deps);
+    const pkgJSONfile = await handleDeps(name, features);
     console.log(pkgJSONfile);
   } catch (error) {
     console.error(error);
