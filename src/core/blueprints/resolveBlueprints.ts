@@ -7,15 +7,15 @@
 // Input: Features list
 // Return: Concat All blueprint files for the project
 
-import fs from 'fs';
+import fs, { Dirent } from 'fs';
 import path from 'path';
 
 import { Feature, FEATURE_TO_DIR } from '../../consts/features';
 import { PATH_BLUEPRINTS } from '../../consts/paths';
 
-export default function (features: Feature[]) {
+export default function (features: (keyof typeof Feature)[]) {
   let requiresTS = false;
-  if (features.some(x => x === Feature.TypeScript)) {
+  if (features.some(x => x === 'TypeScript')) {
     requiresTS = true;
   }
 
@@ -32,8 +32,8 @@ export default function (features: Feature[]) {
   }
 
   features.forEach(feature => {
-    if (feature === Feature.TypeScript) return;
-    const dirName = FEATURE_TO_DIR[feature].toLowerCase();
+    if (feature === 'TypeScript') return;
+    const dirName = FEATURE_TO_DIR[Feature[feature]].toLowerCase();
     if (
       requiresTS &&
       fs.existsSync(path.join(PATH_BLUEPRINTS, `${dirName}_ts`))

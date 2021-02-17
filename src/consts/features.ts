@@ -12,14 +12,14 @@ export enum Feature {
 }
 
 export const FEATURE_TO_DIR: { [key: string]: string } = {
-  TypeScript: 'ts',
-  'PWA Support': 'pwa',
-  'Streamed imports': 'cdn',
-  Router: 'router',
-  Redux: 'redux',
-  'Linter / Formatter': 'lint',
-  'Unit testing': 'unit_test',
-  'E2E testing': 'e2e_test',
+  [Feature['TypeScript']]: 'ts',
+  [Feature['PWA Support']]: 'pwa',
+  [Feature['Streamed imports']]: 'cdn',
+  [Feature['Router']]: 'router',
+  [Feature['Redux']]: 'redux',
+  [Feature['Linter / Formatter']]: 'lint',
+  [Feature['Unit testing']]: 'unit_test',
+  [Feature['E2E testing']]: 'e2e_test',
 };
 
 export enum StyleFormat {

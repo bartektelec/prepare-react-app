@@ -13,18 +13,17 @@ import fs from 'fs';
 import { Feature, FEATURE_TO_DIR } from '../../consts/features';
 import { PATH_DEPS } from '../../consts/paths';
 
-export default async function (features: Feature[]) {
-  console.log('hi from resolvedeps');
+export default async function (features: (keyof typeof Feature)[]) {
   let requiresTS = false;
-  if (features.some(x => x === Feature.TypeScript)) {
+  if (features.some(x => x === 'TypeScript')) {
     requiresTS = true;
   }
 
   let dependencies: { deps: any[]; devDeps: any[] } = { deps: [], devDeps: [] };
 
   for (let feature of features) {
-    if (feature === Feature.TypeScript) return;
-    const dirName = FEATURE_TO_DIR[feature].toLowerCase();
+    if (feature === 'TypeScript') return;
+    const dirName = FEATURE_TO_DIR[Feature[feature]].toLowerCase();
     const pathname_ts = path.join(PATH_DEPS, `${dirName}_ts.ts`);
     const pathname_js = path.join(PATH_DEPS, `${dirName}.ts`);
     const doesTSexist = fs.existsSync(pathname_ts);
