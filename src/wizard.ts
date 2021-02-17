@@ -18,7 +18,9 @@ export default function projectWizard(name: string) {
         type: 'checkbox',
         name: 'features',
         message: 'Choose features',
-        choices: [...Object.values(Feature)],
+        choices: [
+          ...Object.values(Feature).filter(key => typeof key === 'string'), // prevent number values to display
+        ],
       },
     ])
     .then((answers: { features: (keyof typeof Feature)[] }) => {

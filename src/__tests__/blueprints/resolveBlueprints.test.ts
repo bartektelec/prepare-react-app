@@ -1,23 +1,29 @@
 import { Feature } from '../../consts/features';
+import { PATH_BLUEPRINTS } from '../../consts/paths';
 import resolveBlueprints from '../../core/blueprints/resolveBlueprints';
+import path from 'path';
 
 describe('resolveBlueprints', () => {
   it('should add a base folder', () => {
     const dir = resolveBlueprints([]);
-    expect(dir).toContain('base');
+    expect(dir).toHaveLength(1);
   });
   it('should add a base ts folder', () => {
     const dir = resolveBlueprints(['TypeScript']);
-    expect(dir).toContain('base_ts');
+    expect(dir).toContain(path.join(PATH_BLUEPRINTS, 'base_ts'));
   });
   it('should find directory for one blueprint', () => {
-    expect(resolveBlueprints(['PWA Support'])).toContain('pwa');
-    expect(resolveBlueprints(['Streamed imports'])).toContain('cdn');
+    expect(resolveBlueprints(['PWA Support'])).toContain(
+      path.join(PATH_BLUEPRINTS, 'pwa')
+    );
+    expect(resolveBlueprints(['Streamed imports'])).toContain(
+      path.join(PATH_BLUEPRINTS, 'cdn')
+    );
   });
   it('should find directory for multiple blueprint', () => {
     const dirs = resolveBlueprints(['PWA Support', 'Streamed imports']);
-    expect(dirs).toContain('cdn');
-    expect(dirs).toContain('pwa');
+    expect(dirs).toContain(path.join(PATH_BLUEPRINTS, 'cdn'));
+    expect(dirs).toContain(path.join(PATH_BLUEPRINTS, 'pwa'));
   });
   it('should find directories for typescript variants', () => {
     const dirs = resolveBlueprints([
@@ -25,17 +31,17 @@ describe('resolveBlueprints', () => {
       'Streamed imports',
       'TypeScript',
     ]);
-    expect(dirs).toContain('pwa');
-    expect(dirs).toContain('cdn_ts');
-    expect(dirs).not.toContain('cdn');
-    expect(dirs).not.toContain('pwa_ts');
-    expect(dirs).not.toContain('ts');
+    expect(dirs).toContain(path.join(PATH_BLUEPRINTS, 'pwa'));
+    expect(dirs).toContain(path.join(PATH_BLUEPRINTS, 'cdn_ts'));
+    expect(dirs).not.toContain(path.join(PATH_BLUEPRINTS, 'cdn'));
+    expect(dirs).not.toContain(path.join(PATH_BLUEPRINTS, 'pwa_ts'));
+    expect(dirs).not.toContain(path.join(PATH_BLUEPRINTS, 'ts'));
   });
 
   it('should not add directories that have not been added yet', () => {
     const dir = resolveBlueprints(['Linter / Formatter']);
-    expect(dir).toContain('base');
-    expect(dir).not.toContain('lint');
-    expect(dir).not.toContain('lint_ts');
+    expect(dir).toContain(path.join(PATH_BLUEPRINTS, 'base'));
+    expect(dir).not.toContain(path.join(PATH_BLUEPRINTS, 'lint'));
+    expect(dir).not.toContain(path.join(PATH_BLUEPRINTS, 'lint_ts'));
   });
 });

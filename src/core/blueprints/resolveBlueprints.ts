@@ -19,31 +19,32 @@ export default function (features: (keyof typeof Feature)[]) {
     requiresTS = true;
   }
 
+  const baseTSdir = path.join(PATH_BLUEPRINTS, 'base_ts');
+  const baseJSdir = path.join(PATH_BLUEPRINTS, 'base');
+
   const directories: string[] = [];
 
   if (requiresTS) {
-    if (!fs.existsSync(path.join(PATH_BLUEPRINTS, 'base_ts')))
+    if (!fs.existsSync(baseTSdir))
       throw new Error('Couldnt find base (TS) folder!');
-    directories.push('base_ts');
+    directories.push(baseTSdir);
   } else {
-    if (!fs.existsSync(path.join(PATH_BLUEPRINTS, 'base')))
-      throw new Error('Couldnt find base folder!');
-    directories.push('base');
+    if (!fs.existsSync(baseJSdir)) throw new Error('Couldnt find base folder!');
+    directories.push(baseJSdir);
   }
 
   features.forEach(feature => {
     if (feature === 'TypeScript') return;
     const dirName = FEATURE_TO_DIR[Feature[feature]].toLowerCase();
-    if (
-      requiresTS &&
-      fs.existsSync(path.join(PATH_BLUEPRINTS, `${dirName}_ts`))
-    ) {
+    const TSdir = path.join(PATH_BLUEPRINTS, `${dirName}_ts`);
+    const JSdir = path.join(PATH_BLUEPRINTS, dirName);
+    if (requiresTS && fs.existsSync(TSdir)) {
       // if ts is added to project try to add _ts directory
-      return directories.push(`${dirName}_ts`);
+      return directories.push(TSdir);
     }
-    if (!fs.existsSync(path.join(PATH_BLUEPRINTS, dirName))) return;
+    if (!fs.existsSync(JSdir)) return;
     // if ts is added but no directory with _ts exists or ts is disabled
-    return directories.push(`${dirName}`);
+    return directories.push(JSdir);
   });
 
   return directories;
