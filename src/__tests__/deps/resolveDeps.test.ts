@@ -4,8 +4,8 @@ import { Feature } from '../../consts/features';
 describe('resolveDeps', () => {
   it('should not get any deps for a empty project', async () => {
     const data = await resolveDeps([]);
-    await expect(data.deps).toHaveLength(0);
-    await expect(data.devDeps).toHaveLength(0);
+    await expect(data.deps).toHaveLength(2);
+    await expect(data.devDeps).toHaveLength(5);
   });
 
   it('should find dependencies for unit testing', async () => {

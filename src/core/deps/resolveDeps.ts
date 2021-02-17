@@ -18,11 +18,19 @@ const readFileAsync = util.promisify(fs.readFile);
 
 export default async function (features: (keyof typeof Feature)[]) {
   let requiresTS = false;
+  let dependencies: { deps: any[]; devDeps: any[] } = { deps: [], devDeps: [] };
   if (features.some(x => x === 'TypeScript')) {
     requiresTS = true;
   }
 
-  let dependencies: { deps: any[]; devDeps: any[] } = { deps: [], devDeps: [] };
+  const baseDeps = requiresTS ? 'base_ts' : 'base';
+
+  const data = await readFileAsync(
+    path.join(PATH_DEPS, `${baseDeps}.json`),
+    'utf-8'
+  );
+  const dataObj = JSON.parse(data);
+  dependencies = { ...dependencies, ...dataObj };
 
   for (let feature of features) {
     if (feature === 'TypeScript') continue;

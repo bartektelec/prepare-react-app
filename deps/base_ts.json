@@ -1,0 +1,18 @@
+{
+  "devDeps": [
+    { "pkg": "@snowpack/plugin-dotenv", "ver": "^2.0.5" },
+    { "pkg": "@snowpack/plugin-react-refresh", "ver": "^2.4.0" },
+    { "pkg": "@snowpack/plugin-sass", "ver": "^1.3.0" },
+    { "pkg": "@snowpack/web-test-runner-plugin", "ver": "^0.2.1" },
+    { "pkg": "snowpack", "ver": "^3.0.11" },
+    { "pkg": "@snowpack/plugin-typescript", "ver": "^1.2.1" },
+    { "pkg": "@types/react", "ver": "^17.0.1" },
+    { "pkg": "@types/react-dom", "ver": "^17.0.0" },
+    { "pkg": "@types/snowpack-env", "ver": "^2.3.3" },
+    { "pkg": "typescript", "ver": "^4.1.5" }
+  ],
+  "deps": [
+    { "pkg": "react", "ver": "^17.0.1" },
+    { "pkg": "react-dom", "ver": "^17.0.1" }
+  ]
+}
