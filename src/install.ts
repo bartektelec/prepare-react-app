@@ -10,58 +10,26 @@
 import fs from 'fs';
 import path from 'path';
 
-const presets: Record<string, { [key: string]: string }> = {
-  parcel: {
-    'parcel-bundler': '^1.12.4',
-  },
-  typescript: {
-    typescript: '^4.1.3',
-  },
-};
+import { Feature } from './consts/features';
 
-interface Package {
-  name: string;
-  version: string;
-  private: boolean;
-  scripts: Record<string, string>;
-  devDependencies: { [key: string]: string };
-}
-
-export default function install(name: string, deps: string[]) {
-  const pkg: Package = {
-    name,
-    version: '0.1.0',
-    private: true,
-    scripts: {
-      dev: 'parcel public/index.html',
-      build: 'parcel build public/index.html --public-url .',
-    },
-    devDependencies: {
-      react: '^17.0.1',
-      'react-dom': '^17.0.1',
-      'parcel-bundler': '^1.12.4',
-    },
-  };
-
-  deps.forEach((dep: string) => {
-    const pkgDeps = { ...pkg.devDependencies };
-    const depName = dep.toLowerCase();
-    pkg.devDependencies = { ...pkgDeps, ...presets[depName] };
-  });
-
-  const fileExtension = deps.includes('TypeScript') ? 'tsx' : 'js';
-
-  fs.mkdirSync(path.join('.', name));
-  fs.mkdirSync(path.join('.', name, 'public'));
-  fs.mkdirSync(path.join('.', name, 'src'));
-
-  fs.writeFile(
-    path.join('.', name, 'package.json'),
-    JSON.stringify(pkg),
-    err => {
-      if (err) console.error(err);
-    }
-  );
-
-  console.log(pkg);
+import setupDir from './core/setupDir';
+import resolveBlueprints from './core/blueprints/resolveBlueprints';
+import handleDeps from './core/handleDeps';
+import writeFiles from './core/writeFiles';
+export default async function install(
+  name: string,
+  features: (keyof typeof Feature)[]
+) {
+  try {
+    console.log('Preparing directory for install');
+    const dirname = await setupDir(name);
+    console.log('Fetching needed blueprints...');
+    const blueprints = await resolveBlueprints(features);
+    console.log('Generating a package.json file...');
+    const pkgJSONfile = await handleDeps(name, features);
+    console.log('Copying files to project directory...');
+    await writeFiles(dirname, blueprints);
+  } catch (error) {
+    console.error(error);
+  }
 }

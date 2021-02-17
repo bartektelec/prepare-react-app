@@ -6,6 +6,7 @@
 // Input: none
 // Return: List of features
 
+import { Feature } from './consts/features';
 import inquirer from 'inquirer';
 import install from './install';
 
@@ -17,13 +18,13 @@ export default function projectWizard(name: string) {
         type: 'checkbox',
         name: 'features',
         message: 'Choose features',
-        choices: [],
+        choices: [
+          ...Object.values(Feature).filter(key => typeof key === 'string'), // prevent number values to display
+        ],
       },
     ])
-    .then(answers => {
-      console.log(name);
-      console.log(answers);
-      // install(name, answers.features);
+    .then((answers: { features: (keyof typeof Feature)[] }) => {
+      install(name, answers.features);
     })
     .catch(error => {
       console.error(error);

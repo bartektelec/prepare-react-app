@@ -8,46 +8,51 @@
 // Return: Concat All deps for all the features
 
 import path from 'path';
-import util from 'util';
 import fs from 'fs';
+import util from 'util';
 
-import {Feature} from '../../consts/features';
-import {PATH_DEPS} from '../../consts/paths';
+import { Feature, FEATURE_TO_DIR } from '../../consts/features';
+import { PATH_DEPS } from '../../consts/paths';
 
-export default async function (features: Feature[]) {
-    try {
+const readFileAsync = util.promisify(fs.readFile);
 
-        let requiresTS = false;
-        if(features.some(x => x === Feature.TS)) {requiresTS = true};
-    
-        
-        let dependencies:{deps: any[], devDeps: any[]} ={deps: [], devDeps: []};
-        
-        for(let feature of features) {
-            if(feature === Feature.TS) return;
-            const dirName = (Feature[feature]).toLowerCase();
-            const pathname_ts = path.join(PATH_DEPS, `${dirName}_ts.ts`);
-            const pathname_js = path.join(PATH_DEPS, `${dirName}.ts`);
-            const doesTSexist =  fs.existsSync(pathname_ts);
-            const doesJSexist =  fs.existsSync(pathname_js)
-            
-            if(requiresTS && doesTSexist) {
-                console.log('required ts and getting ts')
-                // if ts is added to project try to add _ts directory
-                const data = await import(path.join(PATH_DEPS, `${dirName}_ts.ts`))
-                return dependencies = {...dependencies, ...data.default};
-            }
-            if(!doesJSexist) return;
-            
-            const data = await import(path.join(PATH_DEPS, `${dirName}.ts`))
-            // if ts is added but no directory with _ts exists or ts is disabled
-            
-            return dependencies = {...dependencies, ...data.default};
-        }
-        
-        
-        return dependencies;
-    } catch(error) {
-        console.error(error);
+export default async function (features: (keyof typeof Feature)[]) {
+  let requiresTS = false;
+  if (features.some(x => x === 'TypeScript')) {
+    requiresTS = true;
+  }
+
+  let dependencies: { deps: any[]; devDeps: any[] } = { deps: [], devDeps: [] };
+
+  for (let feature of features) {
+    if (feature === 'TypeScript') continue;
+    const dirName = FEATURE_TO_DIR[Feature[feature]].toLowerCase();
+    const pathname_ts = path.join(PATH_DEPS, `${dirName}_ts.json`);
+    const pathname_js = path.join(PATH_DEPS, `${dirName}.json`);
+    const doesTSexist = fs.existsSync(pathname_ts);
+    const doesJSexist = fs.existsSync(pathname_js);
+
+    if (requiresTS && doesTSexist) {
+      console.log('required ts and getting ts');
+      // if ts is added to project try to add _ts directory
+      const data = await readFileAsync(
+        path.join(PATH_DEPS, `${dirName}_ts.json`),
+        'utf-8'
+      );
+      const dataObj = JSON.parse(data);
+      dependencies = { ...dependencies, ...dataObj };
+      continue;
     }
+    if (!doesJSexist) continue;
+
+    const data = await readFileAsync(
+      path.join(PATH_DEPS, `${dirName}.json`),
+      'utf-8'
+    );
+    // if ts is added but no directory with _ts exists or ts is disabled
+    const dataObj = JSON.parse(data);
+    dependencies = { ...dependencies, ...dataObj };
+  }
+
+  return dependencies;
 }

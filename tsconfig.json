@@ -1,6 +1,6 @@
 {
-  "exclude": ["blueprints"],
-  "include": ["**/*.test.ts"],
+  "exclude": ["blueprints", "deps"],
+  "include": ["**/*.test.ts", "src/"],
   "compilerOptions": {
     /* Visit https://aka.ms/tsconfig.json to read more about this file */
 
