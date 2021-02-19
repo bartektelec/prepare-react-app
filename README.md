@@ -19,7 +19,7 @@ I'm tired of using Create React App which ships with a lot of additional depende
 
 ## Usage
 
-Install prepare-react-app globally
+1. Install prepare-react-app globally
 
 ```bash
 npm install -g prepare-react-app
@@ -32,6 +32,11 @@ react-app my-app
 ```
 
 Follow the instructions to set it up as you like
+
+## Development
+
+`npm run build` to compile TypeScript files
+`npm run test` to run tests
 
 ## Licence
 
