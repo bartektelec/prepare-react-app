@@ -1,6 +1,6 @@
 {
   "name": "prepare-react-app",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "description": "alternative cli for creating new react projects",
   "main": "./dist/index.js",
   "bin": {
