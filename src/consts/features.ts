@@ -21,10 +21,3 @@ export const FEATURE_TO_DIR: { [key: string]: string } = {
   [Feature['Unit testing']]: 'unit_test',
   [Feature['E2E testing']]: 'e2e_test',
 };
-
-export enum StyleFormat {
-  'BASE' = 'CSS / SCSS',
-  'TAILWIND' = 'Tailwind CSS with PostCSS',
-  'CSS_MOD' = 'CSS Modules',
-  'STYLE_COMP' = 'Styled Components',
-}
