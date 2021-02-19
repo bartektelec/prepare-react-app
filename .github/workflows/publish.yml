@@ -29,7 +29,8 @@ jobs:
 
       # Runs a set of commands using the runners shell
       - name: Run tests
-      - run: npm test
+        run: npm test
+        
       - uses: JS-DevTools/npm-publish@v1
         with:
           token: ${{ secrets.NPM_TOKEN }}
