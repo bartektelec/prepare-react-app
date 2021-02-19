@@ -1,1 +1,12 @@
-./src/
+node_modules/
+__tests__
+src/
+
+.github
+jest.config.js
+./pic1.jpg
+./TODOS.md
+
+!blueprints/*.*
+!blueprints/**/*.*
+!deps/*.*

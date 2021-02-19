@@ -8,7 +8,6 @@
 // Input: Dependencies lists, project name
 // Return: package.json file
 
-import { Feature } from '../../consts/features';
 import { DepsFile } from '../../types/index';
 
 type JSONDependencyList = Record<string, string>;

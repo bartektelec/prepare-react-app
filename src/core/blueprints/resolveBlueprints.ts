@@ -7,7 +7,7 @@
 // Input: Features list
 // Return: Concat All blueprint files for the project
 
-import fs, { Dirent } from 'fs';
+import fs from 'fs';
 import path from 'path';
 
 import { Feature, FEATURE_TO_DIR } from '../../consts/features';

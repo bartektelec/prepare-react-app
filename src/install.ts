@@ -23,6 +23,7 @@ import writeFiles from './core/writeFiles';
 
 const writeFileAsync = util.promisify(fs.writeFile);
 const execAsync = util.promisify(exec);
+const renameAsync = util.promisify(fs.rename);
 
 export default async function install(
   name: string,
@@ -32,12 +33,16 @@ export default async function install(
   spinner.spinner = 'dots3';
   try {
     const dirname = await setupDir(name);
+
     spinner.text = 'Studying recipes';
     const blueprints = await resolveBlueprints(features);
+
     spinner.text = 'Heating up the oven';
     const pkgJSONfile = await handleDeps(name, features);
+
     spinner.text = 'Blending all the ingredients';
     await writeFiles(dirname, blueprints);
+
     spinner.text = 'Adding a pinch of salt';
     await writeFileAsync(
       path.join(dirname, 'package.json'),
@@ -46,6 +51,13 @@ export default async function install(
 
     spinner.text = 'Waiting for it to finish baking';
     await execAsync(`cd ${dirname} && npm install`);
+
+    spinner.text = 'Adding sprinkles on top';
+    await renameAsync(
+      path.join(dirname, '.gitignore'),
+      path.join(dirname, '.npmignore')
+    );
+
     spinner.succeed('Enjoy!');
     if (!spinner.isSpinning) {
       console.log('Project was succefully created.');
