@@ -1,0 +1,18 @@
+
+{
+  "devDeps": [
+    { "pkg": "eslint", "ver": "^7.20.0" },
+    { "pkg": "@typescript-eslint/eslint-plugin", "ver": "^4.15.2" },
+    { "pkg": "@typescript-eslint/parser", "ver": "^4.15.2" },
+    { "pkg": "eslint-config-airbnb", "ver": "^18.2.1" },
+    { "pkg": "eslint-config-prettier", "ver": "^8.0.0" },
+    { "pkg": "eslint-import-resolver-typescript", "ver": "^2.4.0" },
+    { "pkg": "eslint-plugin-import", "ver": "^2.22.1" },
+    { "pkg": "eslint-plugin-jsx-a11y", "ver": "^6.4.1" },
+    { "pkg": "eslint-plugin-prettier", "ver": "^3.3.1" },
+    { "pkg": "eslint-plugin-react", "ver": "^7.22.0" },
+    { "pkg": "eslint-plugin-react-hooks", "ver": "^4.2.0" },
+    { "pkg": "prettier", "ver": "^2.2.1" }
+  ],
+  "deps": []
+}
