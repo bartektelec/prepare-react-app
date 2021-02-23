@@ -3,30 +3,28 @@ module.exports = {
 	env: {
 		browser: true,
 		es2020: true,
+		jest: true,
 	},
 	extends: [
 		'plugin:react/recommended',
 		'airbnb',
-		'plugin:@typescript-eslint/recommended',
 		'plugin:prettier/recommended',
 	],
-	parser: '@typescript-eslint/parser',
 	parserOptions: {
-		project: ['./tsconfig.eslint.json'],
 		ecmaFeatures: {
 			jsx: true,
 		},
 		ecmaVersion: 11,
 		sourceType: 'module',
 	},
-	plugins: ['react', '@typescript-eslint', 'react-hooks', 'prettier'],
+	plugins: ['react', 'react-hooks', 'prettier'],
 	rules: {
 		'react-hooks/rules-of-hooks': 'error',
 		'react-hooks/exhaustive-deps': 'warn',
 		'react/jsx-filename-extension': [
 			1,
 			{
-				extensions: ['.tsx'],
+				extensions: ['.jsx', '.tsx'],
 			},
 		],
 		'import/prefer-default-export': 'off',
@@ -36,16 +34,13 @@ module.exports = {
 			{
 				ts: 'never',
 				tsx: 'never',
+				js: 'never',
+				jsx: 'never',
 			},
 		],
 		'prettier/prettier': 'error',
-		'@typescript-eslint/explicit-module-boundary-types': 'off',
 		'react/jsx-one-expression-per-line': 'off',
 		'no-use-before-define': 'off',
 	},
-	settings: {
-		'import/resolver': {
-			typescript: {},
-		},
-	},
+	
 };

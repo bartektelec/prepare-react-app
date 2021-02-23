@@ -50,7 +50,7 @@ export default async function install(
     );
 
     spinner.text = 'Waiting for it to finish baking';
-    await execAsync(`cd ${dirname} && npm install`);
+    await execAsync(`cd ${dirname} && pnpm install`);
 
     spinner.text = 'Adding sprinkles on top';
     await renameAsync(
