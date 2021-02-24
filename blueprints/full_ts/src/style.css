@@ -8,7 +8,6 @@ body {
   align-items: center;
   justify-content: center;
   text-align: center;
-  filter: hue-rotate(280deg);
 }
 .App {
   font-size: 2rem;
@@ -17,6 +16,22 @@ body {
 .App-logo {
   height: 10vmin;
   pointer-events: none;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+  gap: 2rem;
+}
+
+nav>a {
+  font-size: 1rem;
+  color: #61dafb;
+}
+
+nav>a.active {
+  color: #61fba1;
 }
 
 @media (prefers-reduced-motion: no-preference) {

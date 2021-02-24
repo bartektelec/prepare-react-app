@@ -1,0 +1,9 @@
+{
+  "devDeps": [
+    {
+      "pkg": "@types/react-router-dom",
+      "ver": "^5.1.7"
+    }
+  ],
+  "deps": [{ "pkg": "react-router-dom", "ver": "^5.2.0" }]
+}
