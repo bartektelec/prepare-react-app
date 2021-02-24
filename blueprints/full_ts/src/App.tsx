@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, NavLink } from 'react-router-dom';
+import {useSelector, useDispatch} from 'react-redux';
 import MainRouter from './routers/MainRouter';
 import logo from './logo.svg';
 import './style.css';
@@ -7,6 +8,8 @@ import './style.css';
 const App: React.FC = () => {
 	// Create the count state.
 	const [count, setCount] = useState(0);
+	const counter = useSelector((state) => state);
+	const dispatch  = useDispatch();
 	// Create the counter (+1 every second).
 	useEffect(() => {
 		const timer = setTimeout(() => setCount(count + 1), 1000);
@@ -16,6 +19,7 @@ const App: React.FC = () => {
 	return (
 		<Router>
 			<div className='App'>
+				<p onClick={()=> dispatch({type: 'INCREMENT'})}>{counter}</p>
 				<nav>
 					<NavLink exact to='/'>
 						Home
