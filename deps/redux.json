@@ -1,0 +1,7 @@
+{
+  "devDeps": [],
+  "deps": [
+    { "pkg": "react-redux", "ver": "^7.2.2" },
+    { "pkg": "redux", "ver": "^4.0.5" }
+  ]
+}
