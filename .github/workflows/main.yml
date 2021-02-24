@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: Bump semver and publish
+name: Test on PR
 
 # Controls when the action will run. 
 on:
@@ -30,9 +30,3 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Run tests
         run: npm test
-        
-      - name: Release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: npx semantic-release
