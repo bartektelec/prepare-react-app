@@ -38,10 +38,5 @@ describe('resolveBlueprints', () => {
     expect(dirs).not.toContain(path.join(PATH_BLUEPRINTS, 'ts'));
   });
 
-  it('should not add directories that have not been added yet', () => {
-    const dir = resolveBlueprints(['Linter / Formatter']);
-    expect(dir).toContain(path.join(PATH_BLUEPRINTS, 'base'));
-    expect(dir).not.toContain(path.join(PATH_BLUEPRINTS, 'lint'));
-    expect(dir).not.toContain(path.join(PATH_BLUEPRINTS, 'lint_ts'));
-  });
+
 });
