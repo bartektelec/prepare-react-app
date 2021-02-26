@@ -13,28 +13,28 @@ describe('resolveBlueprints', () => {
     expect(dir).toContain(path.join(PATH_BLUEPRINTS, 'base_ts'));
   });
   it('should find directory for one blueprint', () => {
-    expect(resolveBlueprints(['PWA Support'])).toContain(
-      path.join(PATH_BLUEPRINTS, 'pwa')
+    expect(resolveBlueprints(['Redux'])).toContain(
+      path.join(PATH_BLUEPRINTS, 'redux')
     );
-    expect(resolveBlueprints(['Streamed imports'])).toContain(
-      path.join(PATH_BLUEPRINTS, 'cdn')
+    expect(resolveBlueprints(['Router'])).toContain(
+      path.join(PATH_BLUEPRINTS, 'router')
     );
   });
   it('should find directory for multiple blueprint', () => {
-    const dirs = resolveBlueprints(['PWA Support', 'Streamed imports']);
-    expect(dirs).toContain(path.join(PATH_BLUEPRINTS, 'cdn'));
-    expect(dirs).toContain(path.join(PATH_BLUEPRINTS, 'pwa'));
+    const dirs = resolveBlueprints(['Redux', 'Router']);
+    expect(dirs).toContain(path.join(PATH_BLUEPRINTS, 'redux'));
+    expect(dirs).toContain(path.join(PATH_BLUEPRINTS, 'router'));
   });
   it('should find directories for typescript variants', () => {
     const dirs = resolveBlueprints([
-      'PWA Support',
-      'Streamed imports',
+      'Redux',
+      'Router',
       'TypeScript',
     ]);
-    expect(dirs).toContain(path.join(PATH_BLUEPRINTS, 'pwa'));
-    expect(dirs).toContain(path.join(PATH_BLUEPRINTS, 'cdn_ts'));
-    expect(dirs).not.toContain(path.join(PATH_BLUEPRINTS, 'cdn'));
-    expect(dirs).not.toContain(path.join(PATH_BLUEPRINTS, 'pwa_ts'));
+    expect(dirs).toContain(path.join(PATH_BLUEPRINTS, 'redux_ts'));
+    expect(dirs).toContain(path.join(PATH_BLUEPRINTS, 'router_ts'));
+    expect(dirs).not.toContain(path.join(PATH_BLUEPRINTS, 'redux'));
+    expect(dirs).not.toContain(path.join(PATH_BLUEPRINTS, 'router'));
     expect(dirs).not.toContain(path.join(PATH_BLUEPRINTS, 'ts'));
   });
 
