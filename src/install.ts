@@ -7,7 +7,7 @@
 // Input: Project directory
 // Return: void
 
-import fs from 'fs';
+import fs, { existsSync } from 'fs';
 import path from 'path';
 import util from 'util';
 import { exec } from 'child_process';
@@ -50,13 +50,15 @@ export default async function install(
     );
 
     spinner.text = 'Waiting for it to finish baking';
-    await execAsync(`cd ${dirname} && pnpm install`);
+    // await execAsync(`cd ${dirname} && pnpm install`);
 
     spinner.text = 'Adding sprinkles on top';
-    await renameAsync(
-      path.join(dirname, '.gitignore'),
-      path.join(dirname, '.npmignore')
-    );
+    if(fs.existsSync(path.join(dirname, '.npmignore'))) {
+      await renameAsync(
+        path.join(dirname, '.npmignore'),
+        path.join(dirname, '.gitignore')
+        );
+      }
 
     spinner.succeed('Enjoy!');
     if (!spinner.isSpinning) {
