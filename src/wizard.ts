@@ -9,6 +9,10 @@
 import { Feature } from './consts/features';
 import inquirer from 'inquirer';
 import install from './install';
+import fs from 'fs';
+import path from 'path';
+import {PATH_BLUEPRINTS} from './consts/paths';
+import {FEATURE_TO_DIR} from './consts/features'
 
 export default function projectWizard(name: string) {
   console.log(`Creating a project named ${name}`);
@@ -19,7 +23,19 @@ export default function projectWizard(name: string) {
         name: 'features',
         message: 'Choose features',
         choices: [
-          ...Object.values(Feature).filter(key => typeof key === 'string'), // prevent number values to display
+          ...Object.values(Feature).filter(key => typeof key === 'string').map((x) => {
+            const k = x as keyof typeof Feature;
+            const tmp = FEATURE_TO_DIR[Feature[k]];
+            const dirname = path.join(PATH_BLUEPRINTS, tmp);
+            if(k === 'TypeScript' || fs.existsSync(dirname)){
+              return x;
+            }
+            return ({
+              name: x,
+              disabled: true
+            })
+            
+          }), // prevent number values to display
         ],
       },
     ])
