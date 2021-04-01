@@ -1,4 +1,3 @@
-/* eslint-disable no-underscore-dangle, @typescript-eslint/no-explicit-any */
 import { createStore } from 'redux';
 import actions from './actions';
 

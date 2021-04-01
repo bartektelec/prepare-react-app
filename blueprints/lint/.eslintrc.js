@@ -5,11 +5,7 @@ module.exports = {
 		es2020: true,
 		jest: true,
 	},
-	extends: [
-		'plugin:react/recommended',
-		'airbnb',
-		'plugin:prettier/recommended',
-	],
+	extends: ['plugin:react/recommended', 'plugin:import/errors', 'plugin:import/warnings', 'plugin:jsx-a11y/strict'],
 	parserOptions: {
 		ecmaFeatures: {
 			jsx: true,
@@ -17,17 +13,24 @@ module.exports = {
 		ecmaVersion: 11,
 		sourceType: 'module',
 	},
-	plugins: ['react', 'react-hooks', 'prettier'],
+	plugins: ['react', 'react-hooks', 'import', 'jsx-a11y'],
 	rules: {
-		'react-hooks/rules-of-hooks': 'error',
+		'no-tabs': 'off',
+		'no-use-before-define': 'off',
+		'import/prefer-default-export': 'off',
+		'react/react-in-jsx-scope': 'off',
 		'react-hooks/exhaustive-deps': 'warn',
+		'jsx-quotes': ['error', 'prefer-single'],
+		'arrow-parens': ['error', 'as-needed'],
 		'react/jsx-filename-extension': [
-			1,
+			'warn',
 			{
-				extensions: ['.jsx', '.tsx'],
+				extensions: ['.tsx', '.jsx'],
 			},
 		],
-		'import/prefer-default-export': 'off',
+		'react/jsx-indent': ['error', 'tab'],
+		'react/jsx-indent-props': ['error', 'tab'],
+		'import/order': ['error', { groups: ['builtin', 'external', 'parent', 'sibling', 'index'] }],
 		'import/extensions': [
 			'error',
 			'ignorePackages',
@@ -38,9 +41,13 @@ module.exports = {
 				jsx: 'never',
 			},
 		],
-		'prettier/prettier': 'error',
-		'react/jsx-one-expression-per-line': 'off',
-		'no-use-before-define': 'off',
+		'import/first': 'error',
+		'import/newline-after-import': 'error',
+		'react-hooks/rules-of-hooks': 'error',
 	},
-	
+	settings: {
+		react: {
+			version: 'detect',
+		},
+	},
 };
