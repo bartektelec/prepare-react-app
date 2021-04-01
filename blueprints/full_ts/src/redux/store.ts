@@ -1,7 +1,7 @@
 import { createStore } from 'redux';
 import actions from './actions';
 
-const initialState: number = 0;
+const initialState = 0;
 
 function defaultReducer(state = initialState, action: { type: string; payload?: any }) {
 	switch (action.type) {

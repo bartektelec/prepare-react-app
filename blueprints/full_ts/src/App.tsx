@@ -1,25 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, NavLink } from 'react-router-dom';
-import {useSelector, useDispatch} from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import MainRouter from './routers/MainRouter';
 import logo from './logo.svg';
 import './style.css';
 
 const App: React.FC = () => {
-	// Create the count state.
-	const [count, setCount] = useState(0);
-	const counter = useSelector((state) => state);
-	const dispatch  = useDispatch();
-	// Create the counter (+1 every second).
-	useEffect(() => {
-		const timer = setTimeout(() => setCount(count + 1), 1000);
-		return () => clearTimeout(timer);
-	}, [count, setCount]);
-	// Return the App component.
+	const counter = useSelector(state => state);
+	const dispatch = useDispatch();
 	return (
 		<Router>
 			<div className='App'>
-				<p onClick={()=> dispatch({type: 'INCREMENT'})}>{counter}</p>
+				<button type='button' onClick={() => dispatch({ type: 'INCREMENT' })}>
+					{counter}
+				</button>
 				<nav>
 					<NavLink exact to='/'>
 						Home
@@ -30,9 +24,6 @@ const App: React.FC = () => {
 					<img src={logo} className='App-logo' alt='logo' />
 					<p>
 						<MainRouter />
-					</p>
-					<p>
-						Page has been open for <code>{count}</code> seconds.
 					</p>
 					<p>
 						<a className='App-link' href='https://reactjs.org' target='_blank' rel='noopener noreferrer'>

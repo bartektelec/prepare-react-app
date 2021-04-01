@@ -7,9 +7,10 @@ module.exports = {
 	},
 	extends: [
 		'plugin:react/recommended',
-		'airbnb',
 		'plugin:@typescript-eslint/recommended',
-		'plugin:prettier/recommended',
+		'plugin:import/errors',
+		'plugin:import/warnings',
+		'plugin:jsx-a11y/strict',
 	],
 	parser: '@typescript-eslint/parser',
 	parserOptions: {
@@ -20,17 +21,26 @@ module.exports = {
 		ecmaVersion: 11,
 		sourceType: 'module',
 	},
-	plugins: ['react', '@typescript-eslint', 'react-hooks', 'prettier'],
+	plugins: ['react', '@typescript-eslint', 'react-hooks', 'import', 'jsx-a11y'],
 	rules: {
-		'react-hooks/rules-of-hooks': 'error',
+		'no-tabs': 'off',
+		'no-use-before-define': 'off',
+		'import/prefer-default-export': 'off',
+		'@typescript-eslint/explicit-module-boundary-types': 'off',
+		'@typescript-eslint/no-explicit-any': 'off',
+		'react/react-in-jsx-scope': 'off',
 		'react-hooks/exhaustive-deps': 'warn',
+		'jsx-quotes': ['error', 'prefer-single'],
+		'arrow-parens': ['error', 'as-needed'],
 		'react/jsx-filename-extension': [
-			1,
+			'warn',
 			{
 				extensions: ['.tsx', '.jsx'],
 			},
 		],
-		'import/prefer-default-export': 'off',
+		'react/jsx-indent': ['error', 'tab'],
+		'react/jsx-indent-props': ['error', 'tab'],
+		'import/order': ['error', { groups: ['builtin', 'external', 'parent', 'sibling', 'index'] }],
 		'import/extensions': [
 			'error',
 			'ignorePackages',
@@ -41,13 +51,14 @@ module.exports = {
 				jsx: 'never',
 			},
 		],
-		'prettier/prettier': 'error',
-		'@typescript-eslint/explicit-module-boundary-types': 'off',
-		'react/react-in-jsx-scope': 'off',
-		'react/jsx-one-expression-per-line': 'off',
-		'no-use-before-define': 'off',
+		'import/first': 'error',
+		'import/newline-after-import': 'error',
+		'react-hooks/rules-of-hooks': 'error',
 	},
 	settings: {
+		react: {
+			version: 'detect',
+		},
 		'import/resolver': {
 			typescript: {},
 		},
