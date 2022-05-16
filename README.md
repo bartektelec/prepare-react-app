@@ -19,16 +19,10 @@ I'm tired of using Create React App which ships with a lot of additional depende
 
 ## Usage
 
-1. Install prepare-react-app globally
+1. Run prepare-react-app using npx
 
 ```bash
-npm install -g prepare-react-app
-```
-
-Use react-app command to create a new project
-
-```bash
-react-app my-app
+npx prepare-react-app <app-name>
 ```
 
 Follow the instructions to set it up as you like
